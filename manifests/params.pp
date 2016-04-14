@@ -19,13 +19,27 @@ class mailcatcher::params {
           case $::lsbdistcodename {
             'vivid': {
               $config_file = '/etc/systemd/system/mailcatcher.conf'
-              $template    = 'mailcatcher/systemd/system/mailcatcher.service.erb'
+              $template    = 'mailcatcher/etc/systemd/system/mailcatcher.service.erb'
               $provider    = 'systemd'
             }
             default: {
               $config_file = '/etc/init/mailcatcher.conf'
               $template    = 'mailcatcher/etc/init/mailcatcher.conf.erb'
               $provider    = 'upstart'
+            }
+          }
+        }
+        'Debian': {
+          case $::lsbdistcodename {
+            'jessie': {
+              $config_file = '/etc/systemd/system/mailcatcher.conf'
+              $template    = 'mailcatcher/etc/systemd/system/mailcatcher.service.erb'
+              $provider    = 'systemd'
+            }
+            default: {
+              $config_file = '/etc/init.d/mailcatcher'
+              $template    = 'mailcatcher/etc/init/mailcatcher.lsb.erb'
+              $provider    = 'debian'
             }
           }
         }

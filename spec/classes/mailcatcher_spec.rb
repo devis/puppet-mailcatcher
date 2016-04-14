@@ -37,15 +37,55 @@ describe 'mailcatcher', :type => :class do
 
       end
     end
-    context 'When I install the mailcatcher base class on Redhat' do
+
+    context 'When I install the mailcatcher base class on Debian Wheezy' do
       let :facts do {
-          :osfamily     =>    'Redhat',
-          :operatingsystem => 'Redhat'
+          :osfamily        => 'Debian',
+          :operatingsystem => 'Debian',
+          :lsbdistcodename => 'wheezy'
       }
       end
 
       describe 'by default it' do
-        it { should compile.with_all_deps}
+          it { should compile.with_all_deps }
+      end
+    end
+
+    context 'When I install the mailcatcher base class on Debian Jessie' do
+      let :facts do {
+          :osfamily        => 'Debian',
+          :operatingsystem => 'Debian',
+          :lsbdistcodename => 'jessie'
+      }
+      end
+
+      describe 'by default it' do
+          it { should compile.with_all_deps }
+      end
+    end
+
+    context 'When I install the mailcatcher base class on LinuxMint' do
+      let :facts do {
+          :osfamily        => 'Debian',
+          :operatingsystem => 'LinuxMint',
+      }
+      end
+
+      describe 'by default it' do
+          it { should compile.with_all_deps }
+      end
+    end
+
+    context 'When I install the mailcatcher base class on Redhat 7' do
+      let :facts do {
+          :osfamily                   => 'Redhat',
+          :operatingsystem            => 'Redhat',
+          :operatingsystemmajrelease  => '7'
+      }
+      end
+
+      describe 'by default it' do
+        it { should compile.with_all_deps }
       end
     end
   end
