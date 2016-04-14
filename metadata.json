@@ -19,7 +19,7 @@
     },
     {
       "operatingsystem": "Debian",
-      "operatingsystemrelease": [ 8 ]
+      "operatingsystemrelease": [ "8.2" ]
     }
   ],
   "dependencies": [

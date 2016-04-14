@@ -1,12 +1,14 @@
 # class mailcatcher::params
 #
 class mailcatcher::params {
-  $smtp_ip          = '0.0.0.0'
-  $smtp_port        = '1025'
-  $http_ip          = '0.0.0.0'
-  $http_port        = '1080'
-  $service_enable   = false
-  $default_version  = 'latest'
+  $smtp_ip                = '0.0.0.0'
+  $smtp_port              = '1025'
+  $http_ip                = '0.0.0.0'
+  $http_port              = '1080'
+  $service_enable         = false
+  $default_version        = 'latest'
+  $fixi18nversion         = false
+  $fixeventmachineversion = false
 
   case $::osfamily {
     'Debian': {
@@ -18,7 +20,7 @@ class mailcatcher::params {
         'Ubuntu': {
           case $::lsbdistcodename {
             'vivid': {
-              $config_file = '/etc/systemd/system/mailcatcher.conf'
+              $config_file = '/etc/systemd/system/mailcatcher.service'
               $template    = 'mailcatcher/etc/systemd/system/mailcatcher.service.erb'
               $provider    = 'systemd'
             }
@@ -32,7 +34,7 @@ class mailcatcher::params {
         'Debian': {
           case $::lsbdistcodename {
             'jessie': {
-              $config_file = '/etc/systemd/system/mailcatcher.conf'
+              $config_file = '/etc/systemd/system/mailcatcher.service'
               $template    = 'mailcatcher/etc/systemd/system/mailcatcher.service.erb'
               $provider    = 'systemd'
             }
